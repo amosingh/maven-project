@@ -8,7 +8,7 @@ pipeline{
 	pollSCM('* * * * *')
 	}
 	tools {
-		 maven "MAVEN_HOME"
+		 maven "M2_HOME"
          jdk "JAVA_HOME"
 	}
 	stages{
@@ -27,25 +27,5 @@ pipeline{
                  }
 			}
 		
-	post{
-	success{
-	echo 'Now Archiving...'
-	archiveArtifacts artifacts: '**/target/*.war'
-	}
-	}
-	}
-	stage ('Deployment'){
-	parallel{
-	stage ('Deploy to Staging'){
-	steps {
-	sh "scp -i /Users/amodkumar139153GMAILCOM/Downloads/KubernetesAWS.pem **/target/*.war ec2-user@${params.tomcat_dev}:/var/lib/tomcat/webapps"
-	}
-	}
-	stage ("Deploy to Production"){
-	steps {
-	sh "scp -i /Users/amodkumar139153GMAILCOM/Downloads/KubernetesAWS.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat/webapps"
-	}
-	}
-	}
 	}
 	}
