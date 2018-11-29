@@ -13,9 +13,11 @@ pipeline{
 	stages{
 		stage('Build'){
 			steps{
-				sh 'mvn clean package'
-
-	}
+				sh '''
+				    mvn clean package
+				    echo "M2_HOME = ${M2_HOME}"
+				'''
+				}
 	post{
 	success{
 	echo 'Now Archiving...'
