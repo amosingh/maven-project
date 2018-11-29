@@ -8,16 +8,20 @@ pipeline{
 	pollSCM('* * * * *')
 	}
 	tools {
-		maven 'Maven 3.5.3'
+		maven 'maven 3'
+         jdk 'java 8'
 	}
 	stages{
-		stage('Build'){
-			steps{
-				sh '''
-				    mvn clean package
-				    echo "M2_HOME = ${M2_HOME}"
-				'''
-				}
+	   stage ("initialize") {
+        steps {
+             sh '''
+                 echo "PATH = ${PATH}"
+                 echo "M2_HOME = ${M2_HOME}"
+                
+                '''
+            }
+          }
+		
 	post{
 	success{
 	echo 'Now Archiving...'
