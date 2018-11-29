@@ -8,7 +8,7 @@ pipeline{
 	pollSCM('* * * * *')
 	}
 	tools {
-		maven 'M3'
+		mvn
 	}
 	stages{
 		stage('Build'){
