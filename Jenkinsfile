@@ -8,8 +8,8 @@ pipeline{
 	pollSCM('* * * * *')
 	}
 	tools {
-		 maven 'maven 3'
-         jdk 'java 8'
+		 maven "MAVEN_HOME"
+         jdk "JAVA_HOME"
 	}
 	stages{
 	   stage ("initialize") {
@@ -21,6 +21,11 @@ pipeline{
                 '''
             }
           }
+          stage ('Build project') {
+            steps {
+                 sh 'mvn clean package'
+                 }
+			}
 		
 	post{
 	success{
