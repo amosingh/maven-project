@@ -24,7 +24,7 @@ pipeline{
           stage ('Build project') {
             steps {
                 script{
-                    docker.build "tomcatwebapp:1.0"
+                    /usr/local/bin/docker.build "tomcatwebapp:1.0"
                   }
                  }
 			}
