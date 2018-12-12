@@ -23,7 +23,7 @@ pipeline{
           }
           stage ('Build project') {
             steps {
-                sh "docker build -t tomcatwebapp:1.0 ."
+                sh "/usr/local/bin/docker build -t tomcatwebapp:1.0 ."
                  }
 			}
 		
