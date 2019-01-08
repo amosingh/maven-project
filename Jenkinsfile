@@ -7,23 +7,16 @@ pipeline{
 	triggers{
 	pollSCM('* * * * *')
 	}
-	tools {
-		 maven "M2_HOME"
-         jdk "JAVA_HOME"
-	}
 	stages{
 	   stage ("initialize") {
         steps {
-             sh '''
-                 echo "PATH = ${PATH}"
-                 echo "M2_HOME = ${M2_HOME}"
-                
-                '''
+            
+            sh 'mvn checkstyle:checkstyle'
             }
           }
           stage ('Build project') {
             steps {
-                sh "/usr/local/bin/docker build -t tomcatwebapp:1.0 ."
+                sh "mvn clean install"
                  }
 			}
 		
